@@ -21,10 +21,8 @@ action :install do
     login_data = "/EMAIL:#{new_resource.email} /PASSWORD:\"#{new_resource.password}\""
   end
 
-  if(new_resource.acceptEULA)
-    eula = '/EULA:accept'
-  end
-  
+  eula = '/EULA:accept' if new_resource.acceptEULA
+
   windows_package "DevExpress Components #{main_version}" do
     source source_url
     installer_type :custom
@@ -35,9 +33,22 @@ end
 
 action :remove do
   main_version = new_resource.version.to_f
-  filename = "C:\\Program Files (x86)\\DevExpress #{main_version}\\Components\\DevExpressComponents-#{new_resource.version}.exe"
+  filename =
+    if main_version < 17.0
+      "C:\\Program Files (x86)\\DevExpress #{main_version}\\Components\\DevExpressComponents-#{new_resource.version}.exe"
+    else
+      "C:\\Program Files (x86)\\DevExpress #{main_version}\\Components\\DevExpressNetComponents-#{new_resource.version}.exe"
+    end
+
   execute "Uninstall DevExpress Components #{main_version}" do
     command "\"#{filename}\" /Q -U"
     only_if { ::File.exist?(filename) }
+  end
+
+  dev_extreme_path = "C:\\Program Files (x86)\\DevExpress #{main_version}\\DevExtreme\\DevExpressDevExtreme-#{new_resource.version}.exe"
+
+  execute "Uninstall DevExpress DevExtreme  #{main_version}" do
+    command "\"#{dev_extreme_path}\" /Q -U"
+    only_if { ::File.exist?(dev_extreme_path) }
   end
 end
