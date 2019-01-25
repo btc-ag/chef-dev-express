@@ -4,7 +4,7 @@ maintainer_email 'bop-infra@btc-ag.com'
 license 'MIT'
 description 'Installs/removes dev_express'
 long_description 'Installs/Configures dev_express'
-version '1.0.2'
+version '1.0.3'
 chef_version '>= 13.0'
 supports 'windows'
 
