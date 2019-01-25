@@ -47,5 +47,5 @@ steps:
   displayName: 'Publish cookbook to Supermarket'
   inputs:
     chefSupermarketEndpoint: 'chef-supermarket'
-    chefCookbookName: 'dev-express'
+    chefCookbookName: 'dev_express'
     chefCookbookPath: '..'
