@@ -1,5 +1,8 @@
 # Dev Express cookbook
 
+[![Build Status](https://dev.azure.com/btcag-chef/chef/_apis/build/status/btc-ag.chef-dev-express?branchName=master)](https://dev.azure.com/btcag-chef/chef/_build/latest?definitionId=4&branchName=master)
+[![Cookbook version](https://img.shields.io/cookbook/v/dev_express.svg?style=flat)](https://supermarket.chef.io/cookbooks/dev_express)
+
 This cookbook can be configured to install DevExpress
 
 it defines a custom resource called `dev_express`.
